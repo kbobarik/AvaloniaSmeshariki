@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication1.UpdateSmesharik"
+			 xmlns:vm="using:AvaloniaApplication1.ViewModels"
+			 x:DataType="vm:UpdateSmesharikViewModel">
+	<StackPanel>
+		<StackPanel>
+			<Button Content="Назад" Command="{Binding Back}"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal">
+			<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Image Source="{Binding ImageSmesh}" Width="100" Height="100"/>
+				<TextBlock Text="Имя:" Margin="0 5"/>
+				<TextBox Text="{Binding Smesh.Name}"/>
+				<TextBlock Text="Возраст:" Margin="0 5"/>
+				<TextBox Text="{Binding Smesh.Age}" />
+				<TextBlock Text="Пол: " Margin="0 5"/>
+				<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding Smesh.GenderNavigation}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<TextBlock Text="Животное:" Margin="0 5"/>
+				<TextBox Text="{Binding Smesh.Animal}" />
+				<TextBlock Text="Качества:" Margin="0 5"/>
+				<ComboBox ItemsSource="{Binding Property}" SelectedItem="{Binding SelectedProperty}" Width="150">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<Button Content="Изменить фото смешарика" Command="{Binding Image}"/>
+				<Button Content="Сохранить" Command="{Binding Save}"/>
+
+			</StackPanel>
+			<ListBox ItemsSource="{Binding Properties}" Width="150" Height="300">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<Button Content="-" Command="{Binding $parent[UserControl].((vm:UpdateSmesharikViewModel)DataContext).DeleteProperty}" CommandParameter="{Binding IdProperty}"/>
+							<TextBlock Text="{Binding Title}" Foreground="Black"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+			
+		</StackPanel>
+	</StackPanel>
+
+</UserControl>

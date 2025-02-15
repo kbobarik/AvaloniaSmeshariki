@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication1.UpdateUsers"
+			  xmlns:vm="using:AvaloniaApplication1.ViewModels"
+			 x:DataType="vm:UpdateUsersViewModel">
+	<StackPanel>
+		<StackPanel>
+			<Button Content="Назад" Command="{Binding Back}"/>
+		</StackPanel>
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+			<TextBlock Text="Фамилия:" Margin="0 5"/>
+			<TextBox Text="{Binding User.Lastname}" Watermark=" Введите фамилию"/>
+			<TextBlock Text="Имя:" Margin="0 5"/>
+			<TextBox Text="{Binding User.Firstname}" Watermark="Введите имя"/>
+			<TextBlock Text="Отчеcтво:" Margin="0 5"/>
+			<TextBox Text="{Binding User.Patronymic}" Watermark="Введите отчество"/>
+
+			<TextBlock Text="Пол: " Margin="0 5"/>
+			<ComboBox ItemsSource="{Binding GenderList}" SelectedItem="{Binding SelectedGender}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Title}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock Text="Введите дату рождения: " Margin="0 5"/>
+			<DatePicker SelectedDate="{Binding DateTimeOffset}"/>
+
+			<TextBlock Text="Логин" Margin="0 5"/>
+			<TextBox  Text="{Binding User.Login}" Watermark="Введите логин"  Margin="0 5"/>
+
+
+			<TextBlock Text="Пароль" Margin="0 5"/>
+			<TextBox  Text="{Binding User.Password}" Watermark="Введите пароль" PasswordChar="*" Margin="0 5"/>
+
+
+		</StackPanel>
+	</StackPanel>
+</UserControl>

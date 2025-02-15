@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication1.AdminUsers"
+			 xmlns:vm="using:AvaloniaApplication1.ViewModels"
+			 x:DataType="vm:AdminUsersViewModel">
+	<Grid RowDefinitions="50,*" Grid.Column="1" Grid.Row="1">
+		<StackPanel Orientation="Horizontal">
+			<TextBox Text="{Binding Search}" Width="200" Watermark="Введите имя: "></TextBox>
+			<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Title}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<StackPanel Orientation="Horizontal">
+				<RadioButton Content="По возрастанию" Command="{Binding OrderByAge}" CommandParameter="1"></RadioButton>
+				<RadioButton Content="По убыванию" Command="{Binding OrderByAge}" CommandParameter="2"></RadioButton>
+			</StackPanel>
+		</StackPanel>
+		<ListBox ItemsSource="{Binding Users}" Grid.Row="1">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<StackPanel>
+							<TextBlock Text="{Binding Lastname, StringFormat= Фамилия: {0}}"></TextBlock>
+							<TextBlock Text="{Binding Firstname, StringFormat= Имя: {0}}"></TextBlock>
+							<TextBlock Text="{Binding Patronymic, StringFormat= Отчество: {0}}"></TextBlock>
+							<TextBlock Text="{Binding Dateofbirtdh, StringFormat= Дата рождения: {0:dd.MM.yyyy}}"></TextBlock>
+							<TextBlock Text="{Binding GenderNavigation.Title, StringFormat= Пол: {0}}"></TextBlock>
+							<Button Content="Удалить" Command="{Binding $parent[UserControl].((vm:AdminUsersViewModel)DataContext).Drop}" CommandParameter="{Binding IdUser}"/>
+							<Button Content="Изменить" Command="{Binding $parent[UserControl].((vm:AdminUsersViewModel)DataContext).Update}" CommandParameter="{Binding IdUser}"/>
+						</StackPanel>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</UserControl>

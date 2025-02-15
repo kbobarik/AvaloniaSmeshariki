@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication1.AdminPage"
+			 xmlns:vm="using:AvaloniaApplication1.ViewModels"
+			 x:DataType="vm:AdminViewModel">
+	<SplitView IsPaneOpen="{Binding Flag}"
+           DisplayMode="CompactInline"
+			   CompactPaneLength="100"
+           OpenPaneLength="300"
+			  >
+		<SplitView.Pane>
+			<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Height="300" VerticalAlignment="Stretch">
+				
+				<Button Content=">" Command="{Binding Press}"/>
+				<ListBox ItemsSource="{Binding Pages}" Width="200" Height="300"	SelectionMode="Single" SelectedItem="{Binding SelectedItem}" IsVisible="{Binding Flag}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="{Binding }"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+		<StackPanel>
+			<ContentControl Content="{Binding Page}" Grid.Column="1" Grid.Row="1"/>
+		</StackPanel>
+	</SplitView>
+</UserControl>

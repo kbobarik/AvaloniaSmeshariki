@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication1.AddSmesh"
+			 xmlns:vm="using:AvaloniaApplication1.ViewModels"
+			 x:DataType="vm:AddSmeshViewModel">
+	
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<StackPanel Orientation="Vertical">
+				<Image Source="{Binding ImageSmesh}" Width="100" Height="100"/>
+				<TextBlock Text="Имя" Margin="0 5"/>
+				<TextBox  Text="{Binding Name}" Watermark="Введите имя"  Margin="0 5"/>
+				<TextBlock Text="Возраст" Margin="0 5"/>
+				<TextBox  Text="{Binding Age}" Watermark="Введите возраст"  Margin="0 5"/>
+				<TextBlock Text="Животное" Margin="0 5"/>
+				<TextBox  Text="{Binding Animal}" Watermark="Введите животное"  Margin="0 5"/>
+				<TextBlock Text="Выберете пол: " Margin="0 5"/>
+				<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" Width="150">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<TextBlock Text="Выберете качества: " Margin="0 5"/>
+				<ComboBox ItemsSource="{Binding Property}" SelectedItem="{Binding SelectedProperty}" Width="150">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<Button Content="Добавить фото" Command="{Binding AddImage}" Margin="0 5" Width="150"/>
+				<Button Content="Сохранить" Command="{Binding Save}" Margin="0 5" Width="150"/>
+			</StackPanel>
+				<ListBox ItemsSource="{Binding Items}" Width="150" Height="300">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<Button Content="-" Command="{Binding $parent[UserControl].((vm:AddSmeshViewModel)DataContext).DeleteItem}" CommandParameter="{Binding IdProperty}"/>
+								<TextBlock Text="{Binding Title}" Foreground="Black"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+		</StackPanel>
+</UserControl>
