@@ -31,18 +31,26 @@
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
 						<Image Source="{Binding Image, Converter= {StaticResource myImageConverter}}" Width="100" Height="100"/>
-						<StackPanel>
-							<TextBlock Text="{Binding Name, StringFormat= Имя: {0}}"></TextBlock>
-							<TextBlock Text="{Binding Animal, StringFormat= Животное: {0}}"></TextBlock>
-							<TextBlock Text="{Binding Age, StringFormat= Возраст: {0}}"></TextBlock>
-							<TextBlock Text="{Binding GenderNavigation.Title, StringFormat= Пол: {0}}"></TextBlock>
+						<StackPanel Orientation="Horizontal">
+							<StackPanel>
+								<TextBlock Text="{Binding Name, StringFormat= Имя: {0}}"></TextBlock>
+								<TextBlock Text="{Binding Animal, StringFormat= Животное: {0}}"></TextBlock>
+								<TextBlock Text="{Binding Age, StringFormat= Возраст: {0}}"></TextBlock>
+								<TextBlock Text="{Binding GenderNavigation.Title, StringFormat= Пол: {0}}"></TextBlock>
+								</StackPanel>
+							<ListBox ItemsSource="{Binding Idproperties}" Width="150" IsVisible="{Binding Idproperties.Count}">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Title}" Foreground="Black"/>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
 
+							</ListBox>
 						</StackPanel>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
 	</Grid>
-
 
 </UserControl>
